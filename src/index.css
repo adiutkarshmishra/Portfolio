@@ -116,14 +116,18 @@
     background: var(--primary);
     color: var(--primary-foreground);
   }
+  /* Browsers that support the View Transition API get a cheap compositor-level
+     crossfade (see theme.tsx) instead — animating background-color/color on
+     every element here as well would double the work and is what made the
+     dark/light switch feel heavy, especially on mobile. This is a fallback
+     for browsers without View Transitions. */
   @media (prefers-reduced-motion: no-preference) {
-    * {
-      transition:
-        background-color 0.4s ease,
-        border-color 0.4s ease,
-        color 0.4s ease,
-        fill 0.4s ease,
-        stroke 0.4s ease;
+    @supports not (view-transition-name: none) {
+      * {
+        transition:
+          background-color 0.25s ease,
+          color 0.25s ease;
+      }
     }
   }
 }
