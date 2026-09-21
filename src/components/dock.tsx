@@ -13,6 +13,8 @@ export interface DockItem {
 
 interface DockProps {
   items: DockItem[];
+  activeId?: number | null;
+  onSelect?: (id: number) => void;
 }
 
 const dockSpring: Transition = {
@@ -21,12 +23,11 @@ const dockSpring: Transition = {
   mass: 0.7,
 };
 
-export const Dock: FC<DockProps> = ({ items }) => {
-  const [selected, setSelected] = useState<number | null>(null);
+export const Dock: FC<DockProps> = ({ items, activeId = null, onSelect }) => {
   const [animateSelected, setAnimateSelected] = useState<number | null>(null);
 
   const handleClick = (item: DockItem) => {
-    setSelected(item.id);
+    onSelect?.(item.id);
     setAnimateSelected(item.id);
     setTimeout(() => {
       setAnimateSelected(null);
@@ -64,7 +65,7 @@ export const Dock: FC<DockProps> = ({ items }) => {
             <item.Icon
               className={cn(
                 'size-4 text-muted-foreground transition-all duration-200',
-                selected === item.id && 'text-primary',
+                activeId === item.id && 'text-primary',
               )}
             />
           </span>
@@ -72,7 +73,7 @@ export const Dock: FC<DockProps> = ({ items }) => {
           <span
             className={cn(
               'absolute inset-x-0 mt-px flex items-center justify-center opacity-0 transition-opacity duration-400',
-              selected === item.id && 'opacity-100',
+              activeId === item.id && 'opacity-100',
             )}
           >
             <span className="size-1 rounded-full bg-primary" />

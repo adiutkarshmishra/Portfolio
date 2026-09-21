@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   Wrench01Icon,
@@ -17,10 +18,32 @@ const NAV_ITEMS: DockItem[] = [
 ]
 
 export function Header() {
+  const [activeId, setActiveId] = useState<number | null>(null)
+
+  useEffect(() => {
+    const sections = NAV_ITEMS.map((item) => ({ id: item.id, el: document.querySelector(item.href) })).filter(
+      (s): s is { id: number; el: Element } => s.el !== null,
+    )
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          const match = sections.find((s) => s.el === entry.target)
+          if (match) setActiveId(match.id)
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
+    )
+
+    sections.forEach((s) => observer.observe(s.el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center px-4">
       <div className="pointer-events-auto">
-        <Dock items={NAV_ITEMS} />
+        <Dock items={NAV_ITEMS} activeId={activeId} onSelect={setActiveId} />
       </div>
     </div>
   )
