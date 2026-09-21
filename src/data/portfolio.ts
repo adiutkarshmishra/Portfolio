@@ -6,7 +6,7 @@ export const profile = {
   tagline:
     'I design mechanisms by day and build tracks by night. Same brain, different tolerances.',
   location: 'Remote',
-  email: 'adiutkarshmishra@gmail.com',
+  email: 'contact@adiutkarsh.com',
   resumeUrl: '/resume.pdf',
 }
 
