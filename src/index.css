@@ -32,6 +32,9 @@
   --ring: oklch(0.53 0.15 65 / 45%);
   --grid-line: oklch(0 0 0 / 5%);
 
+  /* Sampled from the Know Me portrait's orange stripe */
+  --photo-orange: #d04001;
+
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
@@ -88,6 +91,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-photo-orange: var(--photo-orange);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
 }

@@ -17,20 +17,26 @@ type IconSpec = {
   size: number
   /** Home-page only: index into HOME_ZONES this particle is confined to. */
   zone: number | null
+  colorClass: string
 }
 
-// Home page only: 4 vertical zones anchored to sections. Each zone is a closed
+const GEAR_COLOR = 'text-primary/15'
+const NOTE_COLOR = 'text-accent/15'
+
+// Home page only: 5 vertical zones anchored to sections. Each zone is a closed
 // box a particle can't drift out of (no visible divider — purely a physics bound).
 const HOME_ZONE_ANCHORS: [string | null, string | null][] = [
   [null, '#day-job'],
   ['#day-job', '#music'],
   ['#music', '#know-me'],
-  ['#know-me', null],
+  ['#know-me', '#links'],
+  ['#links', null],
 ]
-const HOME_ZONE_MIX: { gears: number; notes: number }[] = [
+const HOME_ZONE_MIX: { gears: number; notes: number; gearColorClass?: string }[] = [
   { gears: 5, notes: 5 },
   { gears: 10, notes: 0 },
   { gears: 0, notes: 10 },
+  { gears: 5, notes: 5, gearColorClass: 'text-photo-orange/15' },
   { gears: 5, notes: 5 },
 ]
 
@@ -45,9 +51,9 @@ function pageModeFor(pathname: string): PageMode {
   return 'mixed'
 }
 
-function makeIcon(kind: IconKind, sizeSeed: number, variantSeed: number): IconSpec {
+function makeIcon(kind: IconKind, sizeSeed: number, variantSeed: number, colorClass: string): IconSpec {
   const icons = kind === 'gear' ? GEAR_ICONS : NOTE_ICONS
-  return { kind, icon: icons[variantSeed % icons.length], size: 20 + (sizeSeed % 4) * 6, zone: null }
+  return { kind, icon: icons[variantSeed % icons.length], size: 20 + (sizeSeed % 4) * 6, zone: null, colorClass }
 }
 
 function buildSpec(mode: PageMode): IconSpec[] {
@@ -56,8 +62,9 @@ function buildSpec(mode: PageMode): IconSpec[] {
     let gearSeed = 0
     let noteSeed = 0
     HOME_ZONE_MIX.forEach((mix, zone) => {
-      for (let i = 0; i < mix.gears; i++) spec.push({ ...makeIcon('gear', i, gearSeed++), zone })
-      for (let i = 0; i < mix.notes; i++) spec.push({ ...makeIcon('note', i, noteSeed++), zone })
+      const gearColor = mix.gearColorClass ?? GEAR_COLOR
+      for (let i = 0; i < mix.gears; i++) spec.push({ ...makeIcon('gear', i, gearSeed++, gearColor), zone })
+      for (let i = 0; i < mix.notes; i++) spec.push({ ...makeIcon('note', i, noteSeed++, NOTE_COLOR), zone })
     })
     return spec
   }
@@ -66,7 +73,8 @@ function buildSpec(mode: PageMode): IconSpec[] {
   let noteSeed = 0
   return Array.from({ length: DEFAULT_COUNT }, (_, i) => {
     const kind: IconKind = mode === 'music' ? 'note' : mode === 'work' ? 'gear' : i % 2 === 0 ? 'gear' : 'note'
-    return makeIcon(kind, i, kind === 'gear' ? gearSeed++ : noteSeed++)
+    const colorClass = kind === 'gear' ? GEAR_COLOR : NOTE_COLOR
+    return makeIcon(kind, i, kind === 'gear' ? gearSeed++ : noteSeed++, colorClass)
   })
 }
 
@@ -229,7 +237,7 @@ export function FloatingIcons() {
         <div
           key={i}
           data-zone={icon.zone ?? undefined}
-          className={'absolute top-0 left-0 will-change-transform ' + (icon.kind === 'gear' ? 'text-primary/15' : 'text-accent/15')}
+          className={'absolute top-0 left-0 will-change-transform ' + icon.colorClass}
         >
           <HugeiconsIcon icon={icon.icon} size={icon.size} />
         </div>

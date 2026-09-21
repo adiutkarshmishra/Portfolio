@@ -12,7 +12,13 @@ import { dayJob, education } from '@/data/portfolio'
 
 export function DayJob() {
   return (
-    <section id="day-job" className="mx-auto max-w-5xl px-6 py-28">
+    <section id="day-job" className="relative mx-auto max-w-5xl px-6 py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-24 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full opacity-20 blur-[110px]"
+        style={{ background: 'radial-gradient(circle, var(--primary), transparent 70%)' }}
+      />
+
       <SectionHeading eyebrow="Spec Sheet" title="The Day Job" description={dayJob.summary} />
 
       <div className="mt-12">
