@@ -69,10 +69,10 @@ export function Hero() {
         transition={{ duration: 0.5, delay: 0.5 }}
         className="mt-10 flex items-center gap-5 text-muted-foreground"
       >
-        <a href="https://github.com/yourhandle" target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-primary">
+        <a href="https://github.com/adiutkarshmishra" target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-primary">
           <HugeiconsIcon icon={Github01Icon} size={20} />
         </a>
-        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-primary">
+        <a href="https://www.linkedin.com/in/adiutkarsh-mishra/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-primary">
           <HugeiconsIcon icon={Linkedin01Icon} size={20} />
         </a>
       </InView>

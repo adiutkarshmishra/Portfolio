@@ -7,7 +7,6 @@ import {
   MusicNote01Icon,
   YoutubeIcon,
   InstagramIcon,
-  NewTwitterIcon,
   File01Icon,
   ArrowUpRight01Icon,
 } from '@hugeicons/core-free-icons'
@@ -23,7 +22,6 @@ const ICONS: Record<string, typeof Github01Icon> = {
   'YouTube Music': MusicNote01Icon,
   YouTube: YoutubeIcon,
   Instagram: InstagramIcon,
-  'X / Twitter': NewTwitterIcon,
   Resume: File01Icon,
 }
 
@@ -52,12 +50,13 @@ export function Links() {
     <section id="links" className="mx-auto max-w-3xl px-6 py-28">
       <SectionHeading eyebrow="Patch Bay" title="All of my links" />
 
-      <div className="mt-12 grid gap-3 sm:grid-cols-2">
+      <div className="mt-12 grid gap-3 md:landscape:grid-cols-2">
         {links.map((link, i) => (
           <InView
             key={link.label}
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.35, delay: i * 0.05 }}
+            className={link.label === 'Resume' ? 'md:landscape:col-span-2' : undefined}
           >
             {link.label === 'Resume' ? (
               <Link

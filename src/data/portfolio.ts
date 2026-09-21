@@ -312,12 +312,11 @@ export const knowMe = {
 // --- All of my links ---
 
 export const links = [
-  { label: 'GitHub', href: 'https://github.com/yourhandle', category: 'Code' },
+  { label: 'GitHub', href: 'https://github.com/adiutkarshmishra', category: 'Code' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/adiutkarsh-mishra/', category: 'Work' },
   { label: 'Spotify', href: 'https://open.spotify.com/artist/3sIk2BJUF5TSTnovigXLuz?si=qZuetw1QQ9e3pHezg23uWQ', category: 'Music' },
   { label: 'YouTube Music', href: 'https://music.youtube.com/@AdiutkarshMishra', category: 'Music' },
   { label: 'YouTube', href: 'https://www.youtube.com/@AdiutkarshMishra', category: 'Video' },
   { label: 'Instagram', href: 'https://www.instagram.com/adiutkarshm/?hl=e', category: 'Social' },
-  { label: 'X / Twitter', href: 'https://x.com/yourhandle', category: 'Social' },
   { label: 'Resume', href: '/resume.pdf', category: 'Work' },
 ]
