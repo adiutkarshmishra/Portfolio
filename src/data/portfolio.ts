@@ -6,7 +6,7 @@ export const profile = {
   tagline:
     'I design mechanisms by day and build tracks by night. Same brain, different tolerances.',
   location: 'Remote',
-  email: 'you@example.com',
+  email: 'adiutkarshmishra@gmail.com',
   resumeUrl: '/resume.pdf',
 }
 
