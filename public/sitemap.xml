@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://adiutkarsh.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/music/catastrophe</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/music/makkurona-rifujin-koi</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/music/whats-up-people</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/music/5to9</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/music/channel</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/resume</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://adiutkarsh.com/education</loc>
+    <priority>0.5</priority>
+  </url>
+</urlset>
