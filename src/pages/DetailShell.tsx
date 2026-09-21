@@ -19,7 +19,7 @@ export function DetailShell({ children }: { children: ReactNode }) {
             className="font-mono-label inline-flex items-center gap-2 text-xs text-muted-foreground uppercase transition-colors hover:text-primary"
           >
             <HugeiconsIcon icon={ArrowLeft01Icon} size={16} />
-            Back to home
+            Back
           </Link>
           <span className="font-mono-label absolute left-1/2 -translate-x-1/2 text-xs text-foreground uppercase">
             {profile.name}

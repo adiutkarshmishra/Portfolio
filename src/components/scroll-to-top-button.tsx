@@ -25,7 +25,7 @@ export function ScrollToTopButton() {
           exit={{ opacity: 0, y: 12, scale: 0.9 }}
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}
-          className="fixed right-6 bottom-6 z-50 flex size-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:border-primary/40 hover:text-primary"
+          className="fixed right-6 bottom-24 z-50 flex size-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:border-primary/40 hover:text-primary"
         >
           <HugeiconsIcon icon={ArrowUp01Icon} size={18} />
         </motion.button>
