@@ -1,6 +1,6 @@
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Sun02Icon, Moon02Icon } from '@hugeicons/core-free-icons'
-import { useTheme } from '@/lib/theme'
+import { useTheme } from '@/lib/theme-context'
 
 export function ThemeToggle({ className, iconSize = 16 }: { className?: string; iconSize?: number }) {
   const { theme, toggleTheme } = useTheme()

@@ -5,6 +5,7 @@ import { profile } from '@/data/portfolio'
 export function Footer() {
   return (
     <footer className="border-t border-border bg-background/80 px-6 py-8 pb-28 text-center backdrop-blur-md">
+      <img src="/images/logo.png" alt="" className="mx-auto mb-5 size-[81px]" />
       <p className="font-mono-label text-xs text-muted-foreground uppercase">
         © {new Date().getFullYear()} {profile.name} — built with React, Tailwind CSS, Watermelon UI &amp; Motion-Primitives
       </p>

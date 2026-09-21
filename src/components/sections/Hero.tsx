@@ -33,7 +33,7 @@ export function Hero() {
       </h1>
 
       <div className="mt-4 text-xl sm:text-2xl">
-        <TextShimmer as="p" duration={2.5} className="font-medium [--base-color:var(--foreground)] [--base-gradient-color:var(--primary)]">
+        <TextShimmer duration={2.5} className="font-medium [--base-color:var(--foreground)] [--base-gradient-color:var(--primary)]">
           {profile.roles.join('  ·  ')}
         </TextShimmer>
       </div>

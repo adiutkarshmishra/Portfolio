@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-
-type Theme = 'light' | 'dark'
+import { useEffect, useState, type ReactNode } from 'react'
+import { ThemeContext, type Theme } from '@/lib/theme-context'
 
 const STORAGE_KEY = 'portfolio-theme'
 
@@ -9,13 +8,6 @@ function getInitialTheme(): Theme {
   if (stored === 'light' || stored === 'dark') return stored
   return 'dark'
 }
-
-type ThemeContextValue = {
-  theme: Theme
-  toggleTheme: () => void
-}
-
-const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 type DocumentWithViewTransition = Document & { startViewTransition?: (callback: () => void) => void }
 
@@ -41,10 +33,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
-}
-
-export function useTheme() {
-  const ctx = useContext(ThemeContext)
-  if (!ctx) throw new Error('useTheme must be used within ThemeProvider')
-  return ctx
 }
