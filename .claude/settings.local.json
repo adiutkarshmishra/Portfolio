@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx shadcn@latest init -d)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://registry.watermelon.sh/r/hero-22.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://registry.watermelon.sh/r/hero-1.json)",
+      "Bash(curl -s https://registry.watermelon.sh/r/hero-1.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://registry.watermelon.sh/r/index.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://registry.watermelon.sh/registry.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://registry.watermelon.sh/r/card-split-accordian.json)"
+    ]
+  }
+}
