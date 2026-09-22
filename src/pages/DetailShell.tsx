@@ -10,10 +10,12 @@ export function DetailShell({
   children,
   accent,
   cyclingLogoSrc,
+  headerTitle,
 }: {
   children: ReactNode
   accent?: 'music'
   cyclingLogoSrc?: string
+  headerTitle?: string
 }) {
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -40,8 +42,15 @@ export function DetailShell({
             <HugeiconsIcon icon={ArrowLeft01Icon} size={16} />
             Back
           </Link>
-          <span className="font-mono-label absolute left-1/2 -translate-x-1/2 text-xs text-foreground uppercase">
-            {profile.name}
+          <span
+            className={
+              'font-mono-label absolute left-1/2 -translate-x-1/2 text-xs uppercase ' +
+              (headerTitle
+                ? 'rounded-md border border-accent/40 px-2.5 py-1 font-bold text-accent'
+                : 'text-foreground')
+            }
+          >
+            {headerTitle ?? profile.name}
           </span>
           <Link to="/" aria-label="Home">
             <BrandLogo accent={accent} src={headerLogoSrc} className="size-8" />

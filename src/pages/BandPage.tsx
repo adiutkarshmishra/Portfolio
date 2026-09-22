@@ -29,11 +29,11 @@ export function BandPage({ release }: { release: BandRelease }) {
   const { nextPerformance, pastPerformances } = release
 
   return (
-    <DetailShell accent="music" cyclingLogoSrc="/images/5to9-logo-circle-blue.png">
-      <div className="grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
+    <DetailShell accent="music" cyclingLogoSrc="/images/5to9-logo-circle-blue.png" headerTitle="5 to 9">
+      <div className="grid grid-cols-2 items-start gap-4 sm:grid-cols-[280px_1fr] sm:gap-10">
         <div className="relative overflow-hidden rounded-xl border border-border">
           <BorderTrail className="bg-accent/70" size={100} />
-          <img src={release.cover} alt={release.title} className="w-full object-contain" />
+          <img src={release.cover} alt={release.title} className="aspect-[3/4] w-full object-cover" />
         </div>
 
         <div>
@@ -51,40 +51,40 @@ export function BandPage({ release }: { release: BandRelease }) {
               </p>
             ))}
           </div>
-
-          {release.members && release.members.length > 0 && (
-            <div className="mt-6">
-              <span className="font-mono-label text-xs text-accent uppercase">Band Members</span>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                {release.members.map((member) => (
-                  <div key={member.name} className="flex items-center justify-between gap-3">
-                    <div>
-                      <p className="font-medium text-foreground">{member.name}</p>
-                      <p className="text-sm text-muted-foreground">{member.role}</p>
-                    </div>
-                    {member.links && member.links.length > 0 && (
-                      <div className="flex shrink-0 items-center gap-2.5">
-                        {member.links.map((link) => (
-                          <a
-                            key={link.label}
-                            href={link.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`${member.name} on ${link.label}`}
-                            className="text-muted-foreground transition-colors hover:text-accent"
-                          >
-                            <HugeiconsIcon icon={MEMBER_ICONS[link.label] ?? InstagramIcon} size={24} />
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
+
+      {release.members && release.members.length > 0 && (
+        <div className="mt-6">
+          <span className="font-mono-label text-xs text-accent uppercase">Band Members</span>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            {release.members.map((member) => (
+              <div key={member.name} className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="font-medium text-foreground">{member.name}</p>
+                  <p className="text-sm text-muted-foreground">{member.role}</p>
+                </div>
+                {member.links && member.links.length > 0 && (
+                  <div className="flex shrink-0 items-center gap-2.5">
+                    {member.links.map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${member.name} on ${link.label}`}
+                        className="text-muted-foreground transition-colors hover:text-accent"
+                      >
+                        <HugeiconsIcon icon={MEMBER_ICONS[link.label] ?? InstagramIcon} size={24} />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="mt-16">
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Performances</h2>
