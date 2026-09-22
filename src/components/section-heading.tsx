@@ -26,8 +26,8 @@ export function SectionHeading({
         {eyebrow}
         <span className={'h-px w-6 ' + lineClass} />
       </span>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{title}</h2>
-      {description && <p className="mt-4 text-muted-foreground">{description}</p>}
+      <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:mt-3 sm:text-4xl md:mt-1 md:text-2xl">{title}</h2>
+      {description && <p className="mt-3 text-muted-foreground sm:mt-4 md:mt-2 md:text-sm">{description}</p>}
     </InView>
   )
 }

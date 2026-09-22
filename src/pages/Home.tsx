@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
-import { motion } from 'motion/react'
-import { Header } from '@/components/sections/Header'
-import { HomeHeader } from '@/components/home-header'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { useEffect, type ComponentType } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
+import { Header, type SectionId } from '@/components/sections/Header'
 import { Hero } from '@/components/sections/Hero'
 import { Stats } from '@/components/sections/Stats'
 import { DayJob } from '@/components/sections/DayJob'
@@ -12,42 +10,57 @@ import { Links } from '@/components/sections/Links'
 import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/sections/Footer'
 
-export function Home() {
-  const [pastHero, setPastHero] = useState(false)
+const SECTION_COMPONENTS: Record<SectionId, ComponentType> = {
+  'day-job': DayJob,
+  music: Music,
+  links: Links,
+  contact: Contact,
+}
 
+export function Home({
+  active,
+  onSelect,
+}: {
+  active: SectionId | null
+  onSelect: (id: SectionId | null) => void
+}) {
   useEffect(() => {
-    const hero = document.querySelector('#home')
-    if (!hero) return
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [active])
 
-    const observer = new IntersectionObserver(([entry]) => setPastHero(!entry.isIntersecting), { threshold: 0 })
-    observer.observe(hero)
-    return () => observer.disconnect()
-  }, [])
+  const ActiveSection = active ? SECTION_COMPONENTS[active] : null
 
   return (
-    <>
-      <HomeHeader visible={pastHero} />
-      <Header />
-      <motion.div
-        animate={{ top: pastHero ? 80 : 24 }}
-        transition={{ duration: 0.3 }}
-        className="fixed right-6 z-50"
-      >
-        <ThemeToggle
-          iconSize={18}
-          className="flex size-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:border-primary/40 hover:text-primary"
-        />
-      </motion.div>
-      <main>
-        <Hero />
-        <Stats />
-        <DayJob />
-        <Music />
-        <KnowMe />
-        <Links />
-        <Contact />
+    <div className="flex min-h-screen flex-col">
+      <Header active={active} onSelect={onSelect} />
+      <main className="flex-1 pt-[72px]">
+        <AnimatePresence mode="wait">
+          {ActiveSection ? (
+            <motion.div
+              key={active}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ActiveSection />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="landing"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Hero onSelect={onSelect} />
+              <KnowMe />
+              <Stats />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
-      <Footer />
-    </>
+      <Footer active={active} />
+    </div>
   )
 }

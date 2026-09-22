@@ -147,6 +147,20 @@ export type SongRelease = {
   description: string
 }
 
+export type Performance = {
+  title: string
+  venue: string
+  location?: string
+  date: string
+  time?: string
+  note?: string
+  ticketUrl?: string
+  mapsUrl?: string
+  guestArtists?: string[]
+  photos?: string[]
+  videoUrls?: string[]
+}
+
 export type BandRelease = {
   kind: 'band'
   slug: string
@@ -154,6 +168,9 @@ export type BandRelease = {
   subtitle: string
   cover: string
   description: string[]
+  members?: { name: string; role: string; links?: { label: string; href: string }[] }[]
+  nextPerformance?: Performance
+  pastPerformances?: Performance[]
 }
 
 export type ChannelRelease = {
@@ -221,8 +238,61 @@ export const musicReleases: MusicRelease[] = [
     subtitle: 'Band',
     cover: '/images/5to9-band.webp',
     description: [
-      'This page is a placeholder — real photos and a real description are coming soon.',
-      '5to9 is a band project. More on the lineup, the sound, and where to hear us will go here.',
+      'We are 5 to 9.',
+      'We work from 9 to 5 and make music all the other time.',
+      'We perform Rock, Pop, and my original songs.',
+    ],
+    members: [
+      {
+        name: 'Adiutkarsh',
+        role: 'Vocals, Guitar',
+        links: [
+          { label: 'Instagram', href: 'https://www.instagram.com/adiutkarshm/?hl=e' },
+          { label: 'Spotify', href: 'https://open.spotify.com/artist/3sIk2BJUF5TSTnovigXLuz?si=qZuetw1QQ9e3pHezg23uWQ' },
+          { label: 'YouTube Music', href: 'https://music.youtube.com/@AdiutkarshMishra' },
+        ],
+      },
+      { name: 'Naraちゃん', role: 'Bass' },
+      {
+        name: 'SID',
+        role: 'Vocals, Piano, Guitar',
+        links: [
+          { label: 'Instagram', href: 'https://www.instagram.com/sid_factory/?hl=en' },
+          {
+            label: 'Spotify',
+            href: 'https://open.spotify.com/artist/4NzDg0f5sMW9BzWxPuhxTD?utm_source=ig&utm_medium=social&utm_content=link_in_bio',
+          },
+          {
+            label: 'SoundCloud',
+            href: 'https://soundcloud.com/spydsid?ref=clipboard&p=i&c=1&si=AD6811585D0A4E6A9776F9CE140BD585&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&utm_content=link_in_bio&utm_id=97760_v0_s00_e0_tv3',
+          },
+        ],
+      },
+    ],
+    nextPerformance: {
+      title: 'Live',
+      venue: 'The Blarney Stone',
+      location: 'Umeda, Osaka',
+      date: 'Nov 21, 2026',
+      time: '8:30 onwards',
+      note: "FREE!! It's an open mic",
+      mapsUrl: 'https://maps.app.goo.gl/qy7DX5r2j4EkL33u5',
+    },
+    pastPerformances: [
+      {
+        title: '5to9 Live',
+        venue: 'The Blarney Stone',
+        location: 'Umeda, Osaka',
+        date: 'Aug 16, 2026',
+        guestArtists: ['Jade', 'Kae', 'Stanley'],
+        photos: ['/images/performances/2026-08-16-blarney-stone.jpg'],
+        videoUrls: [
+          'https://youtu.be/ZxCx3WWkdOI',
+          'https://youtu.be/WxF7CwR1o2M',
+          'https://youtu.be/krEf2A5BCC0',
+          'https://youtu.be/Z_jCoJJKmIk',
+        ],
+      },
     ],
   },
   {

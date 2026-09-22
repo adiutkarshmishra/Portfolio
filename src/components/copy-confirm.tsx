@@ -72,7 +72,7 @@ export default function CopyConfirm({
           whileTap={{ scale: 0.97 }}
           disabled={loading}
           animate={{
-            backgroundColor: copied ? '#15803d' : '#b45309',
+            backgroundColor: copied ? '#15803d' : '#d04001',
           }}
           onClick={handleCopy}
           className="relative flex  items-center justify-center gap-2 overflow-hidden rounded-full py-2 px-4 text-white"

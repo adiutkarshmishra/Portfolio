@@ -47,10 +47,10 @@ function LinkCardContent({ label, category }: { label: string; category: string 
 
 export function Links() {
   return (
-    <section id="links" className="mx-auto max-w-3xl px-6 py-28">
+    <section id="links" className="mx-auto max-w-3xl px-6 py-10 sm:py-14 md:pt-2 md:pb-4">
       <SectionHeading eyebrow="Patch Bay" title="All of my links" />
 
-      <div className="mt-12 grid gap-3 md:landscape:grid-cols-2">
+      <div className="mt-8 grid gap-2.5 sm:mt-10 md:mt-5 md:landscape:grid-cols-2">
         {links.map((link, i) => (
           <InView
             key={link.label}

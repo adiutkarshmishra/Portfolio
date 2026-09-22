@@ -1,49 +1,54 @@
-import { useEffect, useState } from 'react'
-import { HugeiconsIcon } from '@hugeicons/react'
-import {
-  Wrench01Icon,
-  MusicNote01Icon,
-  UserIcon,
-  Link01Icon,
-  Mail01Icon,
-} from '@hugeicons/core-free-icons'
-import { Dock, type DockItem } from '@/components/dock'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { BrandLogo } from '@/components/brand-logo'
+import { profile } from '@/data/portfolio'
 
-const NAV_ITEMS: DockItem[] = [
-  { id: 1, label: 'Day Job', href: '#day-job', Icon: ({ className }) => <HugeiconsIcon icon={Wrench01Icon} size={22} className={className} /> },
-  { id: 2, label: 'Music', href: '#music', Icon: ({ className }) => <HugeiconsIcon icon={MusicNote01Icon} size={22} className={className} /> },
-  { id: 3, label: 'Know Me', href: '#know-me', Icon: ({ className }) => <HugeiconsIcon icon={UserIcon} size={22} className={className} /> },
-  { id: 4, label: 'Links', href: '#links', Icon: ({ className }) => <HugeiconsIcon icon={Link01Icon} size={22} className={className} /> },
-  { id: 5, label: 'Contact', href: '#contact', Icon: ({ className }) => <HugeiconsIcon icon={Mail01Icon} size={22} className={className} /> },
+export type SectionId = 'day-job' | 'music' | 'links' | 'contact'
+
+const NAV_ITEMS: { id: SectionId | null; label: string; accent?: 'accent' }[] = [
+  { id: null, label: 'Home' },
+  { id: 'day-job', label: 'Day Job' },
+  { id: 'music', label: 'Music', accent: 'accent' },
+  { id: 'links', label: 'Links' },
+  { id: 'contact', label: 'Contact' },
 ]
 
-export function Header() {
-  const [activeId, setActiveId] = useState<number | null>(null)
-
-  useEffect(() => {
-    const sections = NAV_ITEMS.map((item) => ({ id: item.id, el: document.querySelector(item.href) })).filter(
-      (s): s is { id: number; el: Element } => s.el !== null,
-    )
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          const match = sections.find((s) => s.el === entry.target)
-          if (match) setActiveId(match.id)
-        }
-      },
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
-    )
-
-    sections.forEach((s) => observer.observe(s.el))
-    return () => observer.disconnect()
-  }, [])
-
+export function Header({
+  active,
+  onSelect,
+}: {
+  active: SectionId | null
+  onSelect: (id: SectionId | null) => void
+}) {
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center px-4">
-      <div className="pointer-events-auto">
-        <Dock items={NAV_ITEMS} activeId={activeId} onSelect={setActiveId} />
+    <div className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="relative mx-auto flex max-w-5xl items-center justify-between gap-0.5 px-3 py-4 sm:gap-4 sm:px-6">
+        <button type="button" onClick={() => onSelect(null)} className="flex shrink-0 items-center gap-2">
+          <BrandLogo accent={active === 'music' ? 'music' : undefined} className="size-6 sm:size-8" />
+          <span className="font-mono-label hidden text-xs text-foreground uppercase lg:inline">{profile.name}</span>
+        </button>
+
+        <nav className="flex shrink-0 items-center gap-[15px] sm:gap-1 lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id ?? 'home'}
+              type="button"
+              onClick={() => onSelect(item.id)}
+              className={
+                'font-mono-label rounded-md px-0.5 py-1.5 text-[10px] whitespace-nowrap uppercase transition-colors sm:px-3 sm:text-xs ' +
+                (active === item.id
+                  ? 'bg-secondary ' + (item.accent === 'accent' ? 'text-accent' : 'text-primary')
+                  : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground')
+              }
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+
+        <ThemeToggle
+          iconSize={16}
+          className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary sm:size-8"
+        />
       </div>
     </div>
   )

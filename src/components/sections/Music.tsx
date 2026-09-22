@@ -15,7 +15,7 @@ function releaseSubtitle(release: (typeof musicReleases)[number]) {
 
 export function Music() {
   return (
-    <section id="music" className="relative mx-auto max-w-5xl px-6 py-28">
+    <section id="music" className="relative mx-auto max-w-5xl px-6 py-10 sm:py-14 md:pt-2 md:pb-4">
       <div
         aria-hidden
         className="pointer-events-none absolute top-24 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full opacity-20 blur-[110px]"
@@ -24,7 +24,7 @@ export function Music() {
 
       <SectionHeading eyebrow="Setlist" title="The Music" description={music.summary} accent="accent" />
 
-      <div className="mt-8 flex flex-wrap justify-center gap-2">
+      <div className="mt-6 flex flex-wrap justify-center gap-2 md:mt-4">
         {music.genres.map((genre) => (
           <Badge key={genre} variant="outline" className="border-accent/30 text-xs text-accent">
             {genre}
@@ -32,11 +32,11 @@ export function Music() {
         ))}
       </div>
 
-      <span className="font-mono-label mt-14 mb-6 block text-center text-xs text-accent uppercase">
+      <span className="font-mono-label mt-8 mb-4 block text-center text-xs text-accent uppercase sm:mt-10 sm:mb-5 md:mt-6 md:mb-3">
         Latest Releases
       </span>
 
-      <div className="grid gap-6 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 md:grid-cols-5 md:gap-3">
         {musicReleases.map((release, i) => (
           <InView
             key={release.slug}
@@ -63,8 +63,8 @@ export function Music() {
                     </span>
                   </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-medium text-foreground">{release.title}</h3>
+                <div className="p-3 sm:p-3.5 md:p-2.5">
+                  <h3 className="font-medium text-foreground md:text-sm">{release.title}</h3>
                   <p className="font-mono-label mt-1 text-xs text-muted-foreground uppercase">
                     {releaseSubtitle(release)}
                   </p>
@@ -75,7 +75,7 @@ export function Music() {
         ))}
       </div>
 
-      <div className="mt-14">
+      <div className="mt-8 sm:mt-10 md:mt-6">
         <InfiniteSlider gap={40} speed={24} speedOnHover={6} reverse className="py-2">
           {music.tools.map((tool) => (
             <span key={tool} className="font-mono-label text-sm whitespace-nowrap text-muted-foreground">

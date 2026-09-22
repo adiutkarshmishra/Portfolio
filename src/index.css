@@ -13,8 +13,11 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.02 260);
 
-  /* Brass / copper — the "mechanical" accent */
-  --primary: oklch(0.53 0.15 65);
+  /* Sampled from the Know Me portrait's orange stripe — the site's one orange, shared by --primary below. Darker shade for light mode (good contrast on the white background). */
+  --photo-orange: #d04001;
+
+  /* The "mechanical" accent — now the same orange as --photo-orange */
+  --primary: var(--photo-orange);
   --primary-foreground: oklch(0.99 0.01 65);
 
   --secondary: oklch(0.94 0.01 260);
@@ -29,11 +32,8 @@
   --destructive: oklch(0.55 0.2 25);
   --border: oklch(0 0 0 / 8%);
   --input: oklch(0 0 0 / 10%);
-  --ring: oklch(0.53 0.15 65 / 45%);
+  --ring: color-mix(in srgb, var(--photo-orange) 45%, transparent);
   --grid-line: oklch(0 0 0 / 5%);
-
-  /* Sampled from the Know Me portrait's orange stripe */
-  --photo-orange: #d04001;
 
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -48,8 +48,11 @@
   --popover: oklch(0.19 0.008 260);
   --popover-foreground: oklch(0.94 0.01 90);
 
-  /* Brass / copper — the "mechanical" accent */
-  --primary: oklch(0.74 0.14 65);
+  /* Brighter shade of the same orange for dark mode (better visibility against the dark background) */
+  --photo-orange: #e44501;
+
+  /* The "mechanical" accent — same orange as --photo-orange */
+  --primary: var(--photo-orange);
   --primary-foreground: oklch(0.16 0.02 65);
 
   --secondary: oklch(0.26 0.01 260);
@@ -64,7 +67,7 @@
   --destructive: oklch(0.64 0.21 25);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.74 0.14 65 / 60%);
+  --ring: color-mix(in srgb, var(--photo-orange) 60%, transparent);
   --grid-line: oklch(1 0 0 / 4%);
 }
 

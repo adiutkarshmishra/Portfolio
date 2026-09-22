@@ -22,7 +22,7 @@ export function StatCounter({ value, suffix = '' }: { value: number; suffix?: st
   }, [isInView, value])
 
   return (
-    <span ref={ref} className="flex items-baseline font-mono text-4xl font-semibold text-foreground sm:text-5xl">
+    <span ref={ref} className="flex items-baseline font-mono text-4xl font-semibold text-foreground sm:text-5xl md:text-4xl">
       <SlidingNumber value={count} />
       <span className="text-primary">{suffix}</span>
     </span>

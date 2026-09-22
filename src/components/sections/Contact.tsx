@@ -7,7 +7,7 @@ import { profile } from '@/data/portfolio'
 
 export function Contact() {
   return (
-    <section id="contact" className="relative mx-auto max-w-3xl px-6 py-32 text-center">
+    <section id="contact" className="relative mx-auto max-w-3xl px-6 py-12 text-center sm:py-16 md:pt-2 md:pb-4">
       <div
         aria-hidden
         className="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-[100px]"

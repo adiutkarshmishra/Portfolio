@@ -1,14 +1,33 @@
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { ArrowLeft01Icon, ArrowUp01Icon } from '@hugeicons/core-free-icons'
 import { profile } from '@/data/portfolio'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { BrandLogo } from '@/components/brand-logo'
 
-export function DetailShell({ children }: { children: ReactNode }) {
+export function DetailShell({
+  children,
+  accent,
+  cyclingLogoSrc,
+}: {
+  children: ReactNode
+  accent?: 'music'
+  cyclingLogoSrc?: string
+}) {
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [])
+
+  const [cycleOn, setCycleOn] = useState(false)
+  useEffect(() => {
+    if (!cyclingLogoSrc) return
+    const id = setInterval(() => setCycleOn((v) => !v), 5000)
+    return () => clearInterval(id)
+  }, [cyclingLogoSrc])
+
+  const defaultLogoSrc = accent === 'music' ? '/images/logo-music.png' : '/images/logo.png'
+  const headerLogoSrc = cyclingLogoSrc ? (cycleOn ? cyclingLogoSrc : defaultLogoSrc) : undefined
 
   return (
     <div className="min-h-screen">
@@ -25,7 +44,7 @@ export function DetailShell({ children }: { children: ReactNode }) {
             {profile.name}
           </span>
           <Link to="/" aria-label="Home">
-            <img src="/images/logo.png" alt="" className="size-8" />
+            <BrandLogo accent={accent} src={headerLogoSrc} className="size-8" />
           </Link>
         </div>
       </div>

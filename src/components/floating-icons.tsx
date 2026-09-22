@@ -2,79 +2,53 @@ import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { CogIcon, Settings01Icon, Settings02Icon, MusicNote01Icon, MusicNote02Icon, Music01Icon } from '@hugeicons/core-free-icons'
+import type { SectionId } from '@/components/sections/Header'
 
 const MAX_SPEED = 0.5
 const COLLISION_DAMPING = 0.6
+const DEFAULT_COUNT = 14
 
 type IconKind = 'gear' | 'note'
 
 const GEAR_ICONS = [CogIcon, Settings01Icon, Settings02Icon]
 const NOTE_ICONS = [MusicNote01Icon, MusicNote02Icon, Music01Icon]
-
-type IconSpec = {
-  kind: IconKind
-  icon: (typeof GEAR_ICONS)[number]
-  size: number
-  /** Home-page only: index into HOME_ZONES this particle is confined to. */
-  zone: number | null
-  colorClass: string
-}
-
 const GEAR_COLOR = 'text-primary/15'
 const NOTE_COLOR = 'text-accent/15'
 
-// Home page only: 5 vertical zones anchored to sections. Each zone is a closed
-// box a particle can't drift out of (no visible divider — purely a physics bound).
-const HOME_ZONE_ANCHORS: [string | null, string | null][] = [
-  [null, '#day-job'],
-  ['#day-job', '#music'],
-  ['#music', '#know-me'],
-  ['#know-me', '#links'],
-  ['#links', null],
-]
-const HOME_ZONE_MIX: { gears: number; notes: number; gearColorClass?: string }[] = [
-  { gears: 5, notes: 5 },
-  { gears: 10, notes: 0 },
-  { gears: 0, notes: 10 },
-  { gears: 5, notes: 5, gearColorClass: 'text-photo-orange/15' },
-  { gears: 5, notes: 5 },
-]
+type IconSpec = {
+  icon: (typeof GEAR_ICONS)[number]
+  size: number
+  colorClass: string
+}
 
-const DEFAULT_COUNT = 14
-
-type PageMode = 'home' | 'music' | 'work' | 'mixed'
+type PageMode = 'music' | 'work' | 'mixed'
 
 function pageModeFor(pathname: string): PageMode {
-  if (pathname === '/') return 'home'
   if (pathname.startsWith('/music/')) return 'music'
   if (pathname === '/resume' || pathname === '/education') return 'work'
   return 'mixed'
 }
 
-function makeIcon(kind: IconKind, sizeSeed: number, variantSeed: number, colorClass: string): IconSpec {
+// The homepage shows one section at a time instead of a continuous scroll, so
+// it gets the same per-view treatment as the other pages, driven by whichever
+// section is currently active rather than the URL.
+function homeSectionMode(section: SectionId | null): PageMode {
+  if (section === 'music') return 'music'
+  if (section === 'day-job') return 'work'
+  return 'mixed'
+}
+
+function makeIcon(kind: IconKind, sizeSeed: number, variantSeed: number): IconSpec {
   const icons = kind === 'gear' ? GEAR_ICONS : NOTE_ICONS
-  return { kind, icon: icons[variantSeed % icons.length], size: 20 + (sizeSeed % 4) * 6, zone: null, colorClass }
+  return { icon: icons[variantSeed % icons.length], size: 20 + (sizeSeed % 4) * 6, colorClass: kind === 'gear' ? GEAR_COLOR : NOTE_COLOR }
 }
 
 function buildSpec(mode: PageMode): IconSpec[] {
-  if (mode === 'home') {
-    const spec: IconSpec[] = []
-    let gearSeed = 0
-    let noteSeed = 0
-    HOME_ZONE_MIX.forEach((mix, zone) => {
-      const gearColor = mix.gearColorClass ?? GEAR_COLOR
-      for (let i = 0; i < mix.gears; i++) spec.push({ ...makeIcon('gear', i, gearSeed++, gearColor), zone })
-      for (let i = 0; i < mix.notes; i++) spec.push({ ...makeIcon('note', i, noteSeed++, NOTE_COLOR), zone })
-    })
-    return spec
-  }
-
   let gearSeed = 0
   let noteSeed = 0
   return Array.from({ length: DEFAULT_COUNT }, (_, i) => {
     const kind: IconKind = mode === 'music' ? 'note' : mode === 'work' ? 'gear' : i % 2 === 0 ? 'gear' : 'note'
-    const colorClass = kind === 'gear' ? GEAR_COLOR : NOTE_COLOR
-    return makeIcon(kind, i, kind === 'gear' ? gearSeed++ : noteSeed++, colorClass)
+    return makeIcon(kind, i, kind === 'gear' ? gearSeed++ : noteSeed++)
   })
 }
 
@@ -87,8 +61,6 @@ type Particle = {
   size: number
   rotation: number
   rotationSpeed: number
-  top: number
-  bottom: number
 }
 
 function clampSpeed(p: Particle) {
@@ -100,20 +72,10 @@ function clampSpeed(p: Particle) {
   }
 }
 
-function resolveZoneBounds(docHeight: number): [number, number][] {
-  const anchorY = (selector: string | null, fallback: number) => {
-    if (!selector) return fallback
-    const el = document.querySelector(selector)
-    if (!el) return fallback
-    return el.getBoundingClientRect().top + window.scrollY
-  }
-  return HOME_ZONE_ANCHORS.map(([start, end]) => [anchorY(start, 0), anchorY(end, docHeight)])
-}
-
-export function FloatingIcons() {
+export function FloatingIcons({ homeSection }: { homeSection: SectionId | null }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
-  const mode = pageModeFor(location.pathname)
+  const mode: PageMode = location.pathname === '/' ? homeSectionMode(homeSection) : pageModeFor(location.pathname)
 
   useEffect(() => {
     const container = containerRef.current
@@ -126,28 +88,21 @@ export function FloatingIcons() {
     const getDocHeight = () => document.body.scrollHeight
     container.style.height = `${getDocHeight()}px`
 
-    const zoneBounds = mode === 'home' ? resolveZoneBounds(getDocHeight()) : null
-
     const els = Array.from(container.children) as HTMLDivElement[]
     const particles: Particle[] = els.map((el) => {
       const size = el.offsetWidth || 24
       const angle = Math.random() * Math.PI * 2
       const speed = 0.15 + Math.random() * 0.25
-      const zoneIndex = el.dataset.zone !== undefined ? Number(el.dataset.zone) : null
-      const [top, bottom] =
-        zoneIndex !== null && zoneBounds ? zoneBounds[zoneIndex] : [0, getDocHeight()]
 
       return {
         el,
         x: Math.random() * Math.max(window.innerWidth - size, 0),
-        y: top + Math.random() * Math.max(bottom - top - size, 0),
+        y: Math.random() * Math.max(getDocHeight() - size, 0),
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         size,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 0.3,
-        top,
-        bottom,
       }
     })
 
@@ -176,12 +131,12 @@ export function FloatingIcons() {
           p.x = w - p.size
           p.vx = -Math.abs(p.vx)
         }
-        if (p.y <= p.top) {
-          p.y = p.top
+        if (p.y <= 0) {
+          p.y = 0
           p.vy = Math.abs(p.vy)
         }
-        if (p.y >= p.bottom - p.size) {
-          p.y = p.bottom - p.size
+        if (p.y >= h - p.size) {
+          p.y = h - p.size
           p.vy = -Math.abs(p.vy)
         }
       }
@@ -234,11 +189,7 @@ export function FloatingIcons() {
   return (
     <div ref={containerRef} aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 overflow-hidden">
       {spec.map((icon, i) => (
-        <div
-          key={i}
-          data-zone={icon.zone ?? undefined}
-          className={'absolute top-0 left-0 will-change-transform ' + icon.colorClass}
-        >
+        <div key={i} className={'absolute top-0 left-0 will-change-transform ' + icon.colorClass}>
           <HugeiconsIcon icon={icon.icon} size={icon.size} />
         </div>
       ))}

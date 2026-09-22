@@ -5,7 +5,7 @@ import type { SongRelease } from '@/data/portfolio'
 
 export function SongPage({ release }: { release: SongRelease }) {
   return (
-    <DetailShell>
+    <DetailShell accent="music">
       <div className="grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
         <img
           src={release.cover}

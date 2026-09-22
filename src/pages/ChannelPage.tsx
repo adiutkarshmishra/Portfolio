@@ -5,7 +5,7 @@ import type { ChannelRelease } from '@/data/portfolio'
 
 export function ChannelPage({ release }: { release: ChannelRelease }) {
   return (
-    <DetailShell>
+    <DetailShell accent="music">
       <span className="font-mono-label text-xs text-accent uppercase">{release.subtitle}</span>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{release.title}</h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
