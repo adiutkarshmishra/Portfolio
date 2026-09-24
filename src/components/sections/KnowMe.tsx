@@ -35,7 +35,7 @@ export function KnowMe() {
           className="space-y-3 [grid-area:bio] md:space-y-1"
         >
           {knowMe.bio.map((paragraph) => (
-            <p key={paragraph} className="text-muted-foreground md:text-xs">
+            <p key={paragraph} className="text-[1.3rem] text-muted-foreground md:text-[0.975rem]">
               {paragraph}
             </p>
           ))}
@@ -48,8 +48,8 @@ export function KnowMe() {
         >
           {knowMe.facts.map((fact) => (
             <div key={fact.label}>
-              <p className="font-mono-label text-[0.6875rem] text-photo-orange uppercase">{fact.label}</p>
-              <p className="mt-1 text-sm text-foreground md:text-xs">{fact.value}</p>
+              <p className="font-mono-label text-[0.89375rem] text-photo-orange uppercase">{fact.label}</p>
+              <p className="mt-1 text-[1.1375rem] text-foreground md:text-[0.975rem]">{fact.value}</p>
             </div>
           ))}
         </InView>
