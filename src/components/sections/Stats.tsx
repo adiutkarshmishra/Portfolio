@@ -5,7 +5,7 @@ import { stats } from '@/data/portfolio'
 export function Stats() {
   return (
     <section className="border-y border-border bg-card/40">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 py-8 sm:grid-cols-4 sm:gap-8 sm:py-10 md:py-2">
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 py-8 sm:grid-cols-4 sm:gap-8 sm:py-10 md:py-0">
         {stats.map((stat, i) => (
           <InView
             key={stat.label}

@@ -11,7 +11,7 @@ export function Hero({ onSelect }: { onSelect: (id: SectionId) => void }) {
   return (
     <section
       id="home"
-      className="relative mx-auto flex max-w-5xl flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-14 md:pt-0 md:pb-8"
+      className="relative mx-auto flex max-w-5xl flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-14 md:pt-0 md:pb-6"
     >
       <div
         aria-hidden
@@ -26,13 +26,13 @@ export function Hero({ onSelect }: { onSelect: (id: SectionId) => void }) {
         </span>
       </InView>
 
-      <h1 className="mt-3 text-4xl font-semibold tracking-tight text-foreground sm:mt-4 sm:text-6xl md:mt-2 md:text-4xl">
+      <h1 className="mt-3 text-4xl font-semibold tracking-tight text-foreground sm:mt-4 sm:text-6xl md:mt-1 md:text-4xl">
         <TextEffect per="char" preset="fade-in-blur" delay={0.15} speedReveal={1.4}>
           {profile.name}
         </TextEffect>
       </h1>
 
-      <div className="mt-2 text-lg sm:mt-3 sm:text-2xl md:mt-1 md:text-base">
+      <div className="mt-2 text-lg sm:mt-3 sm:text-2xl md:mt-0 md:text-base">
         <TextShimmer duration={2.5} className="font-medium [--base-color:var(--foreground)] [--base-gradient-color:var(--primary)]">
           {profile.roles.join('  ·  ')}
         </TextShimmer>
@@ -42,13 +42,13 @@ export function Hero({ onSelect }: { onSelect: (id: SectionId) => void }) {
         variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <p className="mt-3 max-w-xl text-balance text-muted-foreground sm:mt-4 md:mt-1">{profile.tagline}</p>
+        <p className="mt-3 max-w-xl text-balance text-muted-foreground sm:mt-4 md:mt-0">{profile.tagline}</p>
       </InView>
 
       <InView
         variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-6 md:mt-2"
+        className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-6 md:mt-1"
       >
         <Button size="lg" onClick={() => onSelect('day-job')}>
           See the engineering

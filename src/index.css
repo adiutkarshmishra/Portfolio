@@ -110,6 +110,12 @@
   html.dark {
     color-scheme: dark;
   }
+  /* Desktop: scale all rem-based text and spacing up 10% */
+  @media (min-width: 768px) {
+    html {
+      font-size: 17.6px;
+    }
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
