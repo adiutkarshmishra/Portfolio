@@ -11,7 +11,7 @@ export function Hero({ onSelect }: { onSelect: (id: SectionId) => void }) {
   return (
     <section
       id="home"
-      className="relative mx-auto flex max-w-5xl flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-14 md:pt-0 md:pb-6"
+      className="relative mx-auto flex max-w-5xl flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-14 md:pt-0 md:pb-4"
     >
       <div
         aria-hidden
@@ -20,7 +20,7 @@ export function Hero({ onSelect }: { onSelect: (id: SectionId) => void }) {
       />
 
       <InView variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5 }}>
-        <span className="font-mono-label inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-[11px] text-muted-foreground uppercase">
+        <span className="font-mono-label inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-[0.6875rem] text-muted-foreground uppercase">
           <span className="size-1.5 animate-pulse rounded-full bg-primary" />
           Spec sheet &amp; setlist below
         </span>

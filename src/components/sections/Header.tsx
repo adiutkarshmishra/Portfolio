@@ -27,14 +27,14 @@ export function Header({
           <span className="font-mono-label hidden text-xs text-foreground uppercase lg:inline">{profile.name}</span>
         </button>
 
-        <nav className="flex shrink-0 items-center gap-[15px] sm:gap-1 lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
+        <nav className="flex shrink-0 items-center gap-[0.9375rem] sm:gap-1 lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id ?? 'home'}
               type="button"
               onClick={() => onSelect(item.id)}
               className={
-                'font-mono-label rounded-md px-0.5 py-1.5 text-[10px] whitespace-nowrap uppercase transition-colors sm:px-3 sm:text-xs ' +
+                'font-mono-label rounded-md px-0.5 py-1.5 text-[0.625rem] whitespace-nowrap uppercase transition-colors sm:px-3 sm:text-xs ' +
                 (active === item.id
                   ? 'bg-secondary ' + (item.accent === 'accent' ? 'text-accent' : 'text-primary')
                   : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground')

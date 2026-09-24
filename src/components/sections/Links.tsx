@@ -34,7 +34,7 @@ function LinkCardContent({ label, category }: { label: string; category: string 
       </span>
       <span className="flex-1">
         <span className="block text-sm font-medium text-foreground">{label}</span>
-        <span className="font-mono-label block text-[11px] text-muted-foreground uppercase">{category}</span>
+        <span className="font-mono-label block text-[0.6875rem] text-muted-foreground uppercase">{category}</span>
       </span>
       <HugeiconsIcon
         icon={ArrowUpRight01Icon}

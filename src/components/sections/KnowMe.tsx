@@ -6,7 +6,7 @@ import { knowMe } from '@/data/portfolio'
 
 export function KnowMe() {
   return (
-    <section id="know-me" className="relative mx-auto max-w-5xl px-6 pt-0 pb-10 sm:pb-14 md:pb-6">
+    <section id="know-me" className="relative mx-auto max-w-5xl px-6 pt-0 pb-10 sm:pb-14 md:pb-4">
       <div
         aria-hidden
         className="pointer-events-none absolute top-8 left-1/2 -z-10 h-56 w-56 -translate-x-1/2 rounded-full opacity-20 blur-[90px] sm:top-16 sm:h-72 sm:w-72 md:top-4 md:h-40 md:w-40"
@@ -15,7 +15,7 @@ export function KnowMe() {
 
       <SectionHeading eyebrow="Liner Notes" title="Know Me" accent="photo-orange" />
 
-      <div className="mt-8 grid items-start gap-4 [grid-template-areas:'photo_facts'_'bio_bio'] [grid-template-columns:1fr_1fr] sm:mt-10 sm:gap-8 sm:[grid-template-areas:'photo_bio'_'photo_facts'] sm:[grid-template-columns:minmax(0,280px)_1fr] md:mt-0 md:gap-6 md:[grid-template-areas:'photo_bio'_'photo_facts'] md:[grid-template-columns:minmax(0,220px)_1fr]">
+      <div className="mt-8 grid items-start gap-4 [grid-template-areas:'photo_facts'_'bio_bio'] [grid-template-columns:1fr_1fr] sm:mt-10 sm:gap-8 sm:[grid-template-areas:'photo_bio'_'photo_facts'] sm:[grid-template-columns:minmax(0,17.5rem)_1fr] md:mt-0 md:gap-6 md:[grid-template-areas:'photo_bio'_'photo_facts'] md:[grid-template-columns:minmax(0,13.75rem)_1fr]">
         <InView
           variants={{ hidden: { opacity: 0, scale: 0.96 }, visible: { opacity: 1, scale: 1 } }}
           transition={{ duration: 0.5 }}
@@ -48,7 +48,7 @@ export function KnowMe() {
         >
           {knowMe.facts.map((fact) => (
             <div key={fact.label}>
-              <p className="font-mono-label text-[11px] text-photo-orange uppercase">{fact.label}</p>
+              <p className="font-mono-label text-[0.6875rem] text-photo-orange uppercase">{fact.label}</p>
               <p className="mt-1 text-sm text-foreground md:text-xs">{fact.value}</p>
             </div>
           ))}

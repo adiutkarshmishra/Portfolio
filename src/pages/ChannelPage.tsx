@@ -23,7 +23,7 @@ export function ChannelPage({ release }: { release: ChannelRelease }) {
             href={release.channelUrl}
             target="_blank"
             rel="noreferrer"
-            className="font-mono-label ml-3 flex-1 truncate rounded bg-black/30 px-3 py-1 text-[11px] text-white/50 hover:text-white/80"
+            className="font-mono-label ml-3 flex-1 truncate rounded bg-black/30 px-3 py-1 text-[0.6875rem] text-white/50 hover:text-white/80"
           >
             youtube.com/@AdiutkarshMishra
           </a>
@@ -94,7 +94,7 @@ export function ChannelPage({ release }: { release: ChannelRelease }) {
                     alt={video.title}
                     className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <span className="absolute right-1 bottom-1 rounded bg-black/80 px-1 py-0.5 text-[10px] text-white">
+                  <span className="absolute right-1 bottom-1 rounded bg-black/80 px-1 py-0.5 text-[0.625rem] text-white">
                     {video.duration}
                   </span>
                 </div>

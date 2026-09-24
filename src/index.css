@@ -116,6 +116,16 @@
       font-size: 17.6px;
     }
   }
+  /* Beyond Full HD: keep scaling proportionally with the viewport instead of
+     staying capped at the 768px-and-up size. 0.9167vw lands exactly on 17.6px
+     at 1920px (so there's no jump at the breakpoint), then grows linearly —
+     e.g. ~23.5px at 2560px, 35.2px (2x) at 3840px/4K — capped at 44px so
+     ultra-wide/8K displays don't scale without bound. */
+  @media (min-width: 1920px) {
+    html {
+      font-size: clamp(17.6px, 0.9167vw, 44px);
+    }
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);

@@ -33,7 +33,7 @@ export function Home({
   return (
     <div className="flex min-h-screen flex-col">
       <Header active={active} onSelect={onSelect} />
-      <main className="flex-1 pt-[72px]">
+      <main className="flex-1 pt-[4.0909rem]">
         <AnimatePresence mode="wait">
           {ActiveSection ? (
             <motion.div

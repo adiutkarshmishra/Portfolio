@@ -42,7 +42,7 @@ export function DayJob() {
               <div className="relative h-full overflow-hidden rounded-xl border border-border bg-card p-4 sm:p-5 md:p-2.5">
                 <BorderTrail className="bg-primary/60" size={80} />
                 <Spotlight size={160} className="from-primary/20 via-primary/10 to-transparent" />
-                <span className="font-mono-label text-[11px] text-primary uppercase">{item.tag}</span>
+                <span className="font-mono-label text-[0.6875rem] text-primary uppercase">{item.tag}</span>
                 <h3 className="mt-3 font-medium text-foreground md:mt-1.5 md:text-sm">{item.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground md:mt-1 md:text-xs">{item.description}</p>
               </div>
@@ -60,7 +60,7 @@ export function DayJob() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="relative"
             >
-              <span className="absolute -left-[29px] top-1.5 size-2.5 rounded-full border-2 border-background bg-primary" />
+              <span className="absolute -left-[1.8125rem] top-1.5 size-2.5 rounded-full border-2 border-background bg-primary" />
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-medium text-foreground md:text-sm">
                   {job.title} · {job.company}

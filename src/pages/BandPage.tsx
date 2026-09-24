@@ -30,7 +30,7 @@ export function BandPage({ release }: { release: BandRelease }) {
 
   return (
     <DetailShell accent="music" cyclingLogoSrc="/images/5to9-logo-circle-blue.png" headerTitle="5 to 9">
-      <div className="grid grid-cols-2 items-start gap-4 sm:grid-cols-[280px_1fr] sm:gap-10">
+      <div className="grid grid-cols-2 items-start gap-4 sm:grid-cols-[17.5rem_1fr] sm:gap-10">
         <div className="relative overflow-hidden rounded-xl border border-border">
           <BorderTrail className="bg-accent/70" size={100} />
           <img src={release.cover} alt={release.title} className="aspect-[3/4] w-full object-cover" />

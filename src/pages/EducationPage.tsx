@@ -11,7 +11,7 @@ export function EducationPage() {
       <div className="mt-12 space-y-10 border-l border-border pl-6">
         {education.schools.map((school) => (
           <div key={school.school} className="relative">
-            <span className="absolute -left-[29px] top-1.5 size-2.5 rounded-full border-2 border-background bg-primary" />
+            <span className="absolute -left-[1.8125rem] top-1.5 size-2.5 rounded-full border-2 border-background bg-primary" />
             <div className="flex items-start gap-4">
               <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-white p-2">
                 <img src={school.logo} alt={`${school.school} logo`} className="size-full object-contain" />
