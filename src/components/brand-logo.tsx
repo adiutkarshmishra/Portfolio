@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { cn } from '@/lib/utils'
+import { cn, withBase } from '@/lib/utils'
 
 export function BrandLogo({
   accent,
@@ -10,7 +10,7 @@ export function BrandLogo({
   src?: string
   className?: string
 }) {
-  const src = srcOverride ?? (accent === 'music' ? '/images/logo-music.png' : '/images/logo.png')
+  const src = srcOverride ?? withBase(accent === 'music' ? '/images/logo-music.png' : '/images/logo.png')
 
   return (
     <span className={cn('relative inline-block shrink-0', className)}>

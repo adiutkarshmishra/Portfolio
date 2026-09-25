@@ -1,5 +1,7 @@
 // Edit this file with your real info. Nothing else needs to change.
 
+import { withBase } from '@/lib/utils'
+
 export const profile = {
   name: 'Adiutkarsh Mishra',
   roles: ['Mechanical Engineer', 'Music Producer', 'Composer'],
@@ -7,7 +9,7 @@ export const profile = {
     'I design mechanisms by day and build tracks by night. Same brain, different tolerances.',
   location: 'Remote',
   email: 'contact@adiutkarsh.com',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: withBase('/resume.pdf'),
 }
 
 export const stats = [
@@ -201,8 +203,8 @@ export const musicReleases: MusicRelease[] = [
     trackCount: '9 songs',
     cover:
       'https://yt3.googleusercontent.com/7Zgl9aKL6_xXaV743uoqxR90CRLzfQY-S3FkqpVCWu_1pcRFlhEp-Sjd1eZ8OurK2eRVKSaNn0nwkew=w1425-h1425-l90-rj',
-    musicUrl: 'https://music.youtube.com/browse/MPREb_BJ1Ilz0tgVF',
-    embedUrl: 'https://www.youtube.com/embed/videoseries?list=OLAK5uy_k4M4OaPRLPVKkGcB0xVK3jTonrqQWbCoM',
+    musicUrl: 'https://music.youtube.com/watch?v=0zFX5B2NhZM&list=OLAK5uy_ko2XGkczDWek8KV6X3GPlGyscIErBgJH0',
+    embedUrl: 'https://www.youtube.com/embed/0zFX5B2NhZM',
     description:
       'A 9-track concept album about hitting bottom and finding a way back up — written, produced, and mixed start to finish.',
   },
@@ -236,7 +238,7 @@ export const musicReleases: MusicRelease[] = [
     slug: '5to9',
     title: '5to9',
     subtitle: 'Band',
-    cover: '/images/5to9-band.webp',
+    cover: withBase('/images/5to9-band.webp'),
     description: [
       'We are 5 to 9.',
       'We work from 9 to 5 and make music all the other time.',
@@ -285,7 +287,7 @@ export const musicReleases: MusicRelease[] = [
         location: 'Umeda, Osaka',
         date: 'Aug 16, 2026',
         guestArtists: ['Jade', 'Kae', 'Stanley'],
-        photos: ['/images/performances/2026-08-16-blarney-stone.jpg'],
+        photos: [withBase('/images/performances/2026-08-16-blarney-stone.jpg')],
         videoUrls: [
           'https://youtu.be/ZxCx3WWkdOI',
           'https://youtu.be/WxF7CwR1o2M',
@@ -340,7 +342,7 @@ export const musicReleases: MusicRelease[] = [
         title: 'Catastrophe',
         cover:
           'https://yt3.googleusercontent.com/7Zgl9aKL6_xXaV743uoqxR90CRLzfQY-S3FkqpVCWu_1pcRFlhEp-Sjd1eZ8OurK2eRVKSaNn0nwkew=w544-h544-l90-rj',
-        url: 'https://music.youtube.com/browse/MPREb_BJ1Ilz0tgVF',
+        url: 'https://music.youtube.com/watch?v=0zFX5B2NhZM&list=OLAK5uy_ko2XGkczDWek8KV6X3GPlGyscIErBgJH0',
       },
       {
         title: '真っ黒な理不尽恋',
@@ -376,7 +378,7 @@ export const knowMe = {
     { label: 'Daily driver DAW', value: 'FL Studio' },
     { label: 'Daily driver CAD', value: 'Catia V4' },
   ],
-  photo: '/images/know-me-portrait.png',
+  photo: withBase('/images/know-me-portrait.png'),
 }
 
 // --- All of my links ---
@@ -388,5 +390,5 @@ export const links = [
   { label: 'YouTube Music', href: 'https://music.youtube.com/@AdiutkarshMishra', category: 'Music' },
   { label: 'YouTube', href: 'https://www.youtube.com/@AdiutkarshMishra', category: 'Video' },
   { label: 'Instagram', href: 'https://www.instagram.com/adiutkarshm/?hl=e', category: 'Social' },
-  { label: 'Resume', href: '/resume.pdf', category: 'Work' },
+  { label: 'Resume', href: withBase('/resume.pdf'), category: 'Work' },
 ]

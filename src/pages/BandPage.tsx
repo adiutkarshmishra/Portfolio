@@ -12,6 +12,7 @@ import {
 import { DetailShell } from '@/pages/DetailShell'
 import { BorderTrail } from '@/components/motion-primitives/border-trail'
 import type { BandRelease } from '@/data/portfolio'
+import { withBase } from '@/lib/utils'
 
 const MEMBER_ICONS: Record<string, typeof InstagramIcon> = {
   Instagram: InstagramIcon,
@@ -29,7 +30,7 @@ export function BandPage({ release }: { release: BandRelease }) {
   const { nextPerformance, pastPerformances } = release
 
   return (
-    <DetailShell accent="music" cyclingLogoSrc="/images/5to9-logo-circle-blue.png" headerTitle="5 to 9">
+    <DetailShell accent="music" cyclingLogoSrc={withBase('/images/5to9-logo-circle-blue.png')} headerTitle="5 to 9">
       <div className="grid grid-cols-2 items-start gap-4 sm:grid-cols-[17.5rem_1fr] sm:gap-10">
         <div className="relative overflow-hidden rounded-xl border border-border">
           <BorderTrail className="bg-accent/70" size={100} />
@@ -40,7 +41,7 @@ export function BandPage({ release }: { release: BandRelease }) {
           <h1 className="sr-only">{release.title}</h1>
           <span className="font-mono-label text-xs text-accent uppercase">{release.subtitle}</span>
           <img
-            src="/images/5to9-logo-circle.png"
+            src={withBase('/images/5to9-logo-circle.png')}
             alt=""
             className="mt-2 size-20 rounded-full border border-border sm:size-24"
           />

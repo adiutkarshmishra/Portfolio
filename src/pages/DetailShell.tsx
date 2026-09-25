@@ -5,6 +5,7 @@ import { ArrowLeft01Icon, ArrowUp01Icon } from '@hugeicons/core-free-icons'
 import { profile } from '@/data/portfolio'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { BrandLogo } from '@/components/brand-logo'
+import { withBase } from '@/lib/utils'
 
 export function DetailShell({
   children,
@@ -28,7 +29,7 @@ export function DetailShell({
     return () => clearInterval(id)
   }, [cyclingLogoSrc])
 
-  const defaultLogoSrc = accent === 'music' ? '/images/logo-music.png' : '/images/logo.png'
+  const defaultLogoSrc = withBase(accent === 'music' ? '/images/logo-music.png' : '/images/logo.png')
   const headerLogoSrc = cyclingLogoSrc ? (cycleOn ? cyclingLogoSrc : defaultLogoSrc) : undefined
 
   return (
